@@ -14,7 +14,7 @@ export default function SignupPage() {
     console.log('Signup data:', data);
     setTimeout(() => {
       setIsLoading(false);
-      window.alert('Registration successful (demo only)');
+      window.alert('Registration successful DEMO');
     }, 1500);
   };
 
@@ -87,7 +87,7 @@ export default function SignupPage() {
                 required: 'Password is required',
                 minLength: {
                   value: 8,
-                  message: 'Password must be at least 8 characters'
+                  message: 'Password must be at least more than 8 characters'
                 },
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
