@@ -1,58 +1,96 @@
-"use client";
-
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 
 export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    setLoading(true);
-
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    console.log('Login data:', data);
     setTimeout(() => {
-      console.log(data);
-      alert("Login Successful!");
-      setLoading(false);
-    }, 2000);
+      setIsLoading(false);
+      alert('Login successful (demo only)');
+    }, 1500);
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form 
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-6 rounded shadow-md w-96"
-      >
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <div className="flex flex-col items-center justify-center py-8 px-4">
+      <div className="w-full max-w-md">
 
-        {/* Email */}
-        <input
-          type="email"
-          placeholder="Email"
-          className="border p-2 w-full mb-2"
-          {...register("email", { required: "Email is required" })}
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold">Log in to TikTok</h1>
+          <p className="text-gray-500 mt-2">
+            Manage your account, check notifications, comment on videos, and more
+          </p>
+        </div>
 
-        {/* Password */}
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2 w-full mb-2"
-          {...register("password", {
-            required: "Password is required",
-            minLength: { value: 8, message: "Minimum 8 characters" }
-          })}
-        />
-        {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+        <div className="border rounded-lg p-6">
+          <form onSubmit={handleSubmit(onSubmit)}>
 
-        <button
-          type="submit"
-          className="bg-red-500 text-white w-full p-2 mt-2"
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+            {/* Email field */}
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Email or username"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                {...register('email', {
+                  required: 'Email or username is required'
+                })}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+              )}
+            </div>
+
+            {/* Password field */}
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                {...register('password', {
+                  required: 'Password is required'
+                })}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+              )}
+            </div>
+
+            {/* Forgot password link */}
+            <div className="mb-4 text-right">
+              <Link href="/reset-password" className="text-sm text-gray-500 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
+
+            {/* Submit button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-red-500 text-white py-3 rounded-md font-medium hover:bg-red-600 transition disabled:opacity-50"
+            >
+              {isLoading ? 'Logging in...' : 'Log in'}
+            </button>
+
+          </form>
+        </div>
+
+        {/* Link to signup */}
+        <div className="mt-4 text-center">
+          <p className="text-gray-500">
+            Don't have an account?{' '}
+            <Link href="/signup" className="text-red-500 font-medium hover:underline">
+              Sign up
+            </Link>
+          </p>
+        </div>
+
+      </div>
     </div>
   );
 }

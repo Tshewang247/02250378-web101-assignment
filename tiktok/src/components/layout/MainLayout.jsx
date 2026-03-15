@@ -57,6 +57,24 @@ export default function MainLayout({ children }) {
             Profile
           </Link>
         </nav>
+
+        {/* ✅ LOGIN AND SIGNUP BUTTONS ADDED HERE */}
+        <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-700">
+          <p className="text-sm text-gray-500 mb-3">
+            Log in to follow creators, like videos, and view comments.
+          </p>
+          <Link href="/login">
+            <button className="w-full py-2 px-4 border border-gray-300 rounded-md font-medium mb-2 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-white">
+              Log in
+            </button>
+          </Link>
+          <Link href="/signup">
+            <button className="w-full py-2 px-4 bg-red-500 text-white rounded-md font-medium hover:bg-red-600">
+              Sign up
+            </button>
+          </Link>
+        </div>
+
       </aside>
 
       {/* Main content */}
