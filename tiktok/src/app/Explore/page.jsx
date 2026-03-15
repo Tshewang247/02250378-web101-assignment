@@ -1,0 +1,39 @@
+export default function ExplorePage() {
+  return (
+    <div className="max-w-5xl mx-auto p-4">
+      {/* Page Title */}
+      <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Explore</h2>
+
+      {/* Trending Hashtags */}
+      <div className="mb-8">
+        <h3 className="text-xl font-semibold mb-3 text-black dark:text-white">Trending Hashtags</h3>
+        <div className="grid grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-md flex flex-col items-center justify-center p-4"
+            >
+              <p className="font-bold text-lg text-black dark:text-white">#Trending{index + 1}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{(index + 1) * 1.5}M views</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Popular Videos */}
+      <div>
+        <h3 className="text-xl font-semibold mb-3 text-black dark:text-white">Popular Videos</h3>
+        <div className="grid grid-cols-4 gap-4">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <div
+              key={index}
+              className="aspect-[9/16] bg-gray-300 dark:bg-gray-600 rounded-md flex items-center justify-center"
+            >
+              <p className="text-sm text-black dark:text-white">Video {index + 1}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
